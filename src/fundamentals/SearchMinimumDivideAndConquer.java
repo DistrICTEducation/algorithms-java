@@ -16,12 +16,12 @@ public class SearchMinimumDivideAndConquer {
         int N = i_array.length;
         
         // End of recursion (trivial case)
-        if (N = 1) {
+        if (N == 1) {
             return i_array[0];
         }
         
         // End of recursion
-        if (N = 2) {
+        if (N == 2) {
             return (i_array[0] < i_array[1]) ? i_array[0] : i_array[1];
         }
         
