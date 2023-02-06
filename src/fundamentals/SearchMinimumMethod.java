@@ -1,5 +1,13 @@
 package fundamentals;
 
+/**
+ * Implementation for searching the minimum value in an array of integers.
+ * Loop through a list of values and keep track of the lowest value found so far. At the end of the loop, return this value.
+ * 
+ * @author  Joris Schelfaut
+ * @version 1.0.0
+ * @since   1.0.0
+ */
 public class SearchMinimumMethod {
 
     public static int searchMinimum(int[] i_array) {

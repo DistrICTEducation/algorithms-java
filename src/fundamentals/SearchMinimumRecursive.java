@@ -1,5 +1,14 @@
 package fundamentals;
 
+/**
+ * Implementation for searching the minimum value in an array of integers.
+ * Loop through the items of the array recursively, retaining the value that is lowest so far. If the last element is reached,
+ * return the lowest value found.
+ * 
+ * @author  Joris Schelfaut
+ * @version 1.0.0
+ * @since   1.0.0
+ */
 public class SearchMinimumRecursive {
 
     public static int searchMinimum(int[] i_array) {

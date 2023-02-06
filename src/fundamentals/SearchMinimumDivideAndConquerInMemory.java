@@ -3,36 +3,41 @@ package fundamentals;
 
 /**
  * Implementation for searching the minimum value in an array of integers.
- * Apply a divide and conquer strategy until the sub-array length is 1. At this point, return up the call stack using the compares
- * to each time return the lowest value.
+ * In this case, we gradually look at smaller groups of elements within the array. When we arrive at the smallest number
+ * of elements to compare (either 1 or 2 elements of a sub-array), we return the lowest value and gradually work our way
+ * back to the initial point of the recursive stack, which should yield the overal lowest number.
+ * The array is not copied as a sub-array, instead we keep track of the begin and end indices of each sub-array. This way
+ * we avoid some array copy overhead.
  * 
  * @author  Joris Schelfaut
  * @version 1.0.0
  * @since   1.0.0
  */
-public class SearchMinimumDivideAndConquer {
+public class SearchMinimumDivideAndConquerInMemory {
     
     public static int searchMinimum(int[] i_array) {
         
         // Finding the lowest value of an empty list is undefined behaviour
         assert(i_array.length > 0);
         
-        return searchMinimumDivideAndConquer(i_array);
+        return searchMinimumDivideAndConquerInMemory(i_array, 0, i_array.length);
     }
     
-    private static int searchMinimumDivideAndConquer(int[] i_array) {
+    private static int searchMinimumDivideAndConquerInMemory(int[] i_array, int index_begin, int index_end) {
         
-        // Keep N as the array length (less verbose)
-        int N = i_array.length;
+        assert(index_begin < index_end);
         
-        // End of recursion (trivial case)
-        if (N == 1) return i_array[0];
+        // Number of elements on the sub-array
+        int N = index_end - index_begin;
+        
+        // End of recursion (trivial case: there is only 1 element left)
+        if (N == 1) return i_array[index_begin];
         
         // N > 2
         // Divide the array in two halves: compute the minimum of each sub-array, and return the minimum of both
         int H = N / 2;
-        int minimum1 = searchMinimumDivideAndConquer(java.util.Arrays.copyOfRange(i_array, 0, H));
-        int minimum2 = searchMinimumDivideAndConquer(java.util.Arrays.copyOfRange(i_array, H, N));
+        int minimum1 = searchMinimumDivideAndConquerInMemory(i_array, index_begin, index_begin + H);
+        int minimum2 = searchMinimumDivideAndConquerInMemory(i_array, index_begin + H, index_end);
         return (minimum1 < minimum2) ? minimum1 : minimum2;
     }
     
